@@ -5,7 +5,7 @@ Very simple epub reader using only the Gtk4 toolkit.
 
 Requires:
 - python3
-- gtk4
+- gtk4 (and Adwaita)
 
 Features:
 - very lite, use the textview widget (but it has very basic);
