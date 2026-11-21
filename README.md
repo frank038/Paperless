@@ -8,6 +8,7 @@ Requires:
 - gtk4
 
 Features:
+- very lite, use the textview widget (but it has very basic);
 - basic settings: foreground and background colours; font type and size;
 - table of contents;
 - pictures.
