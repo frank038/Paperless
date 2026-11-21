@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Paperless
+Comment=Epub reader
+Icon=/FULL/PATH/PaperlessReader/icons/com.Prism.download.manager.svg
+Path=/FULL/PATH/PaperlessReader
+Exec=/FULL/PATH/PaperlessReader/paperless.sh
+MimeType=application/epub+zip;
+Categories=Education;
+Keywords=Reader;Epub;
