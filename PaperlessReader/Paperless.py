@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-VERSION = "0.4.0"
+VERSION = "0.4.1"
 ENAME = "Paperless"
 ESITE = "https://github.com/frank038/Paperless"
 
@@ -1249,7 +1249,6 @@ class WinSettings(Adw.Dialog):
         self.set_name("settingdialog")
         self.set_size_request(800, 300)
         self.set_title(_lang.SETTINGS)
-        self.set_icon_name("com.Paperless.epubreader")
         #
         self.headerbar = Gtk.HeaderBar.new()
         self.headerbar.set_show_title_buttons(False)
