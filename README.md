@@ -9,7 +9,7 @@ Requires:
 
 Features:
 - very lite, use the textview widget (but it has very basic);
-- basic settings: foreground and background colours; font type and size;
+- basic settings: foreground and background colours; font type and size; space between lines of text;
 - table of contents;
 - pictures.
 
