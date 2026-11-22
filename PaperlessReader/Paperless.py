@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-VERSION = "0.4.1"
+VERSION = "0.4.2"
 ENAME = "Paperless"
 ESITE = "https://github.com/frank038/Paperless"
 
@@ -55,7 +55,8 @@ config_conf_start = {
 "foreground": "rgb(0,0,0)",
 "background": "rgb(255,216,196)",
 "fontfamily": "Sans",
-"textsize": 12
+"textsize": 12,
+"linespace": 0
 }
 
 if not os.path.exists(config_file):
@@ -82,6 +83,7 @@ FOREGROUND = config_conf["foreground"] # the font color
 BACKGROUND = config_conf["background"] # the paper color
 FONTFAMILY = config_conf["fontfamily"] # the font type
 FONTSIZE = config_conf["textsize"] # the text size
+LINESPACE = config_conf["linespace"] # the space between lines of text
 ######### 
 IMAGEPAD = 100 # the width of this program less that number 
 
@@ -598,6 +600,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.source_view.set_right_margin(32)
         # self.source_view.set_pixels_above_lines(3)
         # self.source_view.set_pixels_below_lines(3)
+        self.source_view.set_pixels_inside_wrap(LINESPACE)
         self.source_view.set_justification(Gtk.Justification.FILL)
         self.scrolled.set_child(self.source_view)
         #
@@ -1323,6 +1326,13 @@ class WinSettings(Adw.Dialog):
         _btn_color.parse(BACKGROUND)
         self.bcolor_btn.set_rgba(_btn_color)
         bgrid1.attach_next_to(self.bcolor_btn,lbl03,1,1,1)
+        # line space
+        lbl04 = Gtk.Label(label=_lang.SPACELINE)
+        lbl04.set_halign(Gtk.Align.START)
+        bgrid1.attach(lbl04,0,5,1,1)
+        self.linespace_spinbtn = Gtk.SpinButton.new_with_range(0,400,1)
+        self.linespace_spinbtn.set_value(LINESPACE)
+        bgrid1.attach_next_to(self.linespace_spinbtn,lbl04,1,1,1)
         ########
         self.present(self._parent)
     
@@ -1345,6 +1355,7 @@ class WinSettings(Adw.Dialog):
         global BACKGROUND
         global FONTFAMILY
         global FONTSIZE
+        global LINESPACE
         #
         FONTSIZE = int(self.fontsize_spinbtn.get_value())
         config_conf["textsize"] = FONTSIZE
@@ -1358,7 +1369,11 @@ class WinSettings(Adw.Dialog):
         FONTFAMILY = self.fontfamily_btn.get_label()
         config_conf["fontfamily"] = FONTFAMILY
         #
+        LINESPACE = int(self.linespace_spinbtn.get_value())
+        config_conf["linespace"] = LINESPACE
+        #
         self._parent.set_custom_settings(FOREGROUND, BACKGROUND, FONTSIZE, FONTFAMILY)
+        self._parent.source_view.set_pixels_inside_wrap(LINESPACE)
         try:
             _ff =  open(os.path.join(HOME_CONFIG,"configs/config.json"), "w")
             json.dump(config_conf, _ff, indent = 4)
